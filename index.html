@@ -52,7 +52,8 @@
     .pname { font-family:'Playfair Display',serif; font-style:italic; font-size:clamp(2rem,6vw,4rem); color:#F5C842; opacity:0; transform:translateY(16px); transition:opacity .75s ease,transform .75s ease; }
     .prole { font-size:.68rem; letter-spacing:.22em; text-transform:uppercase; color:rgba(255,255,255,.26); margin-top:.4em; opacity:0; transition:opacity .7s .45s ease; }
     .pline { width:0; height:1px; background:rgba(245,200,66,.25); margin:1.6em auto; transition:width 1s .8s ease; }
-    .pmsg  { font-family:'Lato',sans-serif; font-weight:300; font-size:clamp(1.1rem,3vw,1.65rem); color:rgba(255,255,255,.88); max-width:600px; line-height:1.82; font-style:italic; opacity:0; transform:translateY(10px); transition:opacity .9s 1.25s ease,transform .9s 1.25s ease; white-space:pre-line; }
+    .pmsg  { font-family:'Lato',sans-serif; font-weight:300; font-size:clamp(0.75rem,1.6vw,1rem); color:rgba(255,255,255,.88); max-width:700px; line-height:1.45; font-style:italic; opacity:0; transform:translateY(10px); transition:opacity .9s 1.25s ease,transform .9s 1.25s ease; white-space:pre-line; }
+    .pmsg.short { font-size:clamp(1.1rem,2.8vw,1.5rem); line-height:1.6; }
 
     .scene.go .pname { opacity:1; transform:translateY(0); }
     .scene.go .prole { opacity:1; }
@@ -292,7 +293,8 @@ const reunionEl = document.getElementById('s-reunion');
 CFG.team.forEach((p,i)=>{
   const d = document.createElement('div');
   d.className='scene'; d.id=`s-p${i}`;
-  d.innerHTML=`<div class="pname">${p.name}</div><div class="prole">${p.role}</div><div class="pline"></div><div class="pmsg">"${p.message}"</div>`;
+  const isShort = p.message.length < 150;
+  d.innerHTML=`<div class="pname">${p.name}</div><div class="prole">${p.role}</div><div class="pline"></div><div class="pmsg ${isShort?'short':''}">"${p.message}"</div>`;
   document.body.insertBefore(d, reunionEl);
 });
 
