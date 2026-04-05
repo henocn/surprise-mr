@@ -103,6 +103,9 @@
     .fdivider { width:0; height:1px; background:rgba(245,200,66,.28); margin:1.7em auto; transition:width 1s 1.35s ease; }
     .fmsg     { font-family:'Lato',sans-serif; font-weight:300; font-size:clamp(.88rem,2vw,1.15rem); color:rgba(255,255,255,.38); max-width:450px; line-height:2; white-space:pre-line; opacity:0; transition:opacity 1s 2s ease; }
 
+    .fmsg-neon { display:inline-block; animation:neonGlow 1.5s ease-in-out infinite alternate; color:#fff; font-weight:400; }
+    @keyframes neonGlow { 0%{text-shadow:0 0 5px #F5C842,0 0 10px #F5C842,0 0 20px #F5C842,0 0 40px #F5C842;} 100%{text-shadow:0 0 10px #F5C842,0 0 20px #F5C842,0 0 40px #F5C842,0 0 80px #F5C842,0 0 100px #F5C842;} }
+
     .scene.go .fname    { opacity:1; transform:scale(1); }
     .scene.go .fwish    { opacity:1; }
     .scene.go .fdivider { width:clamp(50px,10vw,100px); }
@@ -179,7 +182,7 @@ var CFG = {
     { name: "Maurice", role: "Design",    message: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod." },
     { name: "Claire", role: "Com",    message: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod." },
     { name: "Grace",   role: "Com",    message: "Happy Birthday \ud83c\udf89 \n\nDu peu que je connais de vous, vous \u00eates un homme de valeurs, d\u2019honneur et de travail, qui ne cesse de se d\u00e9passer.\nC\u2019est inspirant de voir avec quelle rigueur et quelle passion vous faites les choses.\nVous \u00eates l\u2019illustration m\u00eame de Proverbes 22:29 (et ce n\u2019est que le d\u00e9but).\nQue Dieu continue de b\u00e9nir abondamment le travail de vos mains, d\u2019\u00e9largir vos horizons et de faire prosp\u00e9rer chacune de vos initiatives.\nJoyeux anniversaire, M. Esso AWESSO." },
-    { name: "Julius",   role: "Design",    message: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod." },
+    { name: "Julius",   role: "Design",    message: "Je vous souhaite un très joyeux anniversaire 🥂. Que cette nouvelle année vous apporte avant tout une excellente santé, ainsi qu'autant de réussite dans vos projets personnels que professionnels.\nMerci pour votre vision et pour l'énergie que vous transmettez au quotidien." },
     { name: "Henoc",   role: "Dev",    isCode: true },
   ],
   reunionPhrase: "Nous voulions vous le dire ensemble.",
@@ -220,7 +223,7 @@ CFG.team.forEach(function(p,i){
 document.getElementById('rgrid').innerHTML=CFG.team.map(function(p){return'<span class="rname">'+p.name+'</span>';}).join('');
 document.getElementById('rsub').textContent=CFG.reunionPhrase;
 document.getElementById('f-name').textContent=CFG.bossName;
-document.getElementById('f-msg').textContent=CFG.finalMessage;
+document.getElementById('f-msg').innerHTML = '<span class="fmsg-neon">' + CFG.finalMessage + '</span>';
 
 /* SEQUENCER */
 var SCENES=['s-intro'].concat(CFG.team.map(function(_,i){return 's-p'+i;})).concat(['s-reunion','s-final']);
