@@ -55,18 +55,22 @@
     /* ── CODE BLOCK ── */
     .pmsg-code {
       font-family:'JetBrains Mono', monospace;
-      font-size: clamp(0.68rem, 1.25vw, 0.85rem);
+      font-size: clamp(0.6rem, 1.4vw, 0.8rem);
       text-align: left;
       background: rgba(255,255,255,0.04);
       border: 1px solid rgba(245,200,66,0.2);
       border-radius: 12px;
-      padding: 1.4rem 1.8rem;
-      max-width: 580px;
-      line-height: 1.9;
+      padding: 1.2rem 1.4rem;
+      max-width: 85vw;
+      width: 100%;
+      box-sizing: border-box;
+      line-height: 1.7;
       opacity: 0;
       transform: translateY(10px);
       transition: opacity .9s 1.25s ease, transform .9s 1.25s ease;
-      white-space: pre;
+      white-space: pre-wrap;
+      word-break: break-word;
+      overflow-wrap: break-word;
     }
     .scene.go .pmsg-code { opacity:1; transform:translateY(0); }
     .pmsg-code .kw  { color: #c678dd; }
@@ -179,7 +183,7 @@ var CFG = {
     { name: "Henoc",   role: "Dev",    isCode: true },
   ],
   reunionPhrase: "Nous voulions vous le dire ensemble.",
-  finalMessage: "On vous aime avec éffet immédiat et sans équivoque.",
+  finalMessage: "On vous aime avec effet immédiat et sans équivoque.",
   youtubeId: "l04BpnlteSY",
 };
 
