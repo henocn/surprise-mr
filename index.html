@@ -343,13 +343,20 @@ function nextScene(){ if(cur<SCENES.length-1) showScene(cur+1); }
 function prevScene(){ if(cur>0) showScene(cur-1); }
 
 function togglePause(){
+  const player = document.getElementById('yt-player');
+  if(!player) return;
+  
   isPaused = !isPaused;
   document.getElementById('icon-pause').style.display = isPaused ? 'none' : 'block';
   document.getElementById('icon-play').style.display = isPaused ? 'block' : 'none';
-  if(!isPaused && autoTimer) {
-    clearTimeout(autoTimer);
-    autoTimer = setTimeout(()=>nextScene(), 5000);
-  }
+  
+  // Contrôler la vidéo YouTube
+  const command = isPaused ? 'pauseVideo' : 'playVideo';
+  player.contentWindow.postMessage(JSON.stringify({
+    event: 'command',
+    func: command,
+    args: ''
+  }), '*');
 }
 
 function updateNavButtons(){
@@ -371,7 +378,7 @@ function begin(){
 
   // Lancer la musique YouTube après interaction utilisateur
   const ytWrap = document.getElementById('yt-wrap');
-  ytWrap.innerHTML = `<iframe width="1" height="1" src="https://www.youtube.com/embed/${CFG.youtubeId}?autoplay=1&controls=0&loop=1&playlist=${CFG.youtubeId}&rel=0&iv_load_policy=3&modestbranding=1" title="CHANSON - JOYEUX ANNIVERSAIRE" frameborder="0" allow="autoplay" referrerpolicy="strict-origin-when-cross-origin"></iframe>`;
+  ytWrap.innerHTML = `<iframe id="yt-player" width="1" height="1" src="https://www.youtube.com/embed/${CFG.youtubeId}?enablejsapi=1&autoplay=1&controls=0&loop=1&playlist=${CFG.youtubeId}&rel=0&iv_load_policy=3&modestbranding=1" title="CHANSON - JOYEUX ANNIVERSAIRE" frameborder="0" allow="autoplay" referrerpolicy="strict-origin-when-cross-origin"></iframe>`;
 
   // Ambient fireworks
   fwTimer = setInterval(launchRocket, 3200);
